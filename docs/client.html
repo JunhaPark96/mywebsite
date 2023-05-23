@@ -17,36 +17,32 @@
       crossorigin="anonymous"
     ></script>
     <style>
-      #wrapper {
+      #container {
         display: grid;
-        grid-row: 1fr 3fr 1fr;
+        grid-template-rows: 1fr 3fr 1fr;
+        box-sizing: border-box;
       }
 
-      #grid {
-        display: grid;
-        /* border: 5px solid red; */
-        grid-template-columns: 430px 1fr;
-      }
       header {
+        display: grid;
+        grid-template-columns: 430px 1fr;
         border-bottom: 2px solid black;
       }
-      nav {
+      #gnb-nav {
+        display: grid;
         background-color: #e7e6e6;
       }
       footer {
         background-color: green;
       }
-
-      #gnb-nav > ul {
+      
+      /* #gnb-nav > ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         padding-top: 50px;
         list-style: none;
-        display: flex;
-        justify-content: space-between;
         font-size: x-large;
-      }
-      #gnb-nav > ul > li {
-        font-weight: 700;
-      }
+      } */
       .nav-link {
         color: black;
       }
@@ -55,12 +51,21 @@
           display: none;
         }
       }
-    </style>
+      #gnb-nav > ul{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* border: 1px solid black; */
+        font-size: 1.5rem;
+      }
+      #gnb-nav > ul > li {
+        font-weight: 700;
+      }
+      </style>
   </head>
   <body>
-    <div id="wrapper">
+    <div id="container">
       <header>
-        <div id="grid">
           <a href="../index.html">
             <img src="../hanabooklogo.png" alt="로고" />
           </a>
@@ -80,7 +85,6 @@
               </li>
             </ul>
           </nav>
-        </div>
       </header>
 
       <div>회사 소개</div>
