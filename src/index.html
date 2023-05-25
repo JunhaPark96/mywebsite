@@ -3,10 +3,22 @@ layout: base
 ---
 
 <div id="main_color">
-    <div class="container-fluid py-5">
-      <h1 class="display-5 fw-bold">Custom jumbotron</h1>
-      <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-      <button class="btn btn-primary btn-lg" type="button">Example button</button>
-    </div>
-  </div>
-
+  <form class="d-flex" role="search">
+    <input
+      class="form-control me-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+</div>
+<div class="search">
+  <input type="text" placeholder="검색어 입력" />
+  <img
+    src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
+  />
+</div>
+<!-- <div class="search_engine">
+  <input type="text" class="form-control">
+</div> -->
