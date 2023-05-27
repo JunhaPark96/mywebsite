@@ -5,7 +5,7 @@ footer {
     border-radius: 10px 10px 0 0;
     margin-top: 15px;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
   }
   
   #tv-align {
