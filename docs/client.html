@@ -66,10 +66,9 @@
 </nav>
       </div>
 
-      <link rel="stylesheet" href='{"./assets/css/client.css" }' />
+      <link rel="stylesheet" href="assets/css/client.css" />
 <script src="client.js" type="module"></script>
 <script src="usersData.js" type="module"></script>
-
 
 <div id="client-layout">
   <div id="client-main">
@@ -90,6 +89,18 @@
           </div>
         </div>
       </div>
+      <div id="client-nav">
+        <div class="client-nav-item">총 인원 수: <span id="total-users"></span></div>
+        <div class="client-nav-item">
+          <button class="user-action-btn" id="create-user-btn">유저 생성</button>
+        </div>
+        <div class="client-nav-item">
+          <button class="user-action-btn" id="delete-user-btn">유저 삭제</button>
+        </div>
+        <div class="client-nav-item">
+          <button class="user-action-btn" id="update-user-btn">유저 내용 변경</button>
+        </div>
+      </div>
     </div>
     <div id="client-contents">
       <table id="client-table">
@@ -108,10 +119,6 @@
         <tbody>
         </tbody>
       </table>
-          <script>
-            // 테이블 생성 함수 호출
-            createTable();
-          </script>
     </div>
   </div>
 </div>
