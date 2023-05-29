@@ -10,6 +10,7 @@
 @import "footer.css";
 @import "books.css";
 @import "client.css";
+@import "loan.css";
 :root,
 [data-bs-theme=light] {
   --bs-blue: #0d6efd;

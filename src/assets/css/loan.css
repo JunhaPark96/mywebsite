@@ -1,81 +1,53 @@
 /* ===================전체 레이아웃========================= */
-#books-layout {
+#loan-layout {
     display: flex;
     height: 100%;
     max-height: 80%;
     border: 1px solid #ccc;
     border-radius: 20px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-        overflow: hidden;
-        border-top: none;
-    }
-    
-    #books-main {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-top: none;
+    flex-direction: column;
 }
 
-#books-side {
+#loan-main {
+    flex-grow: 1;
     display: flex;
-    width: 15%;
-    overflow-y: scroll;
+    flex-direction: column;
 }
 
-#books-contents {
+
+#loan-contents {
     width: 100%;
     flex-grow: 1;
     background-color: #d2f5e3;
 }
 
-#books-header {
+#loan-header {
     width: 100%;
 }
 
-/* ===================side 연도별 리스트========================= */
-
-.timeline_nav {
+/* ===================네비게이션========================= */
+.loan-nav {
     display: flex;
-    z-index: 99;
-    top: 0;
-    justify-content: center;
-    /* transition: top .3s ease-out; */
-
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ccc;
 }
 
-#timeline-list {
-    list-style: none;
-    list-style-position: inside;
-    margin: 15px 0;
-    padding: 0;
-
+.loan-info {
+    font-size: 14px;
 }
 
-li {
-    margin: 15px 0;
-    /* padding-left: 0; */
-    list-style-type: none;
-    border-bottom: 1px dotted rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    /* transition: all .3s ease-out; */
-    text-align: center;
-}
-
-li:active {
+.loan-info span {
     font-weight: bold;
-    color: #f94125;
-    border-bottom: 1px dotted transparent;
-    transform: scale(1.2);
 }
-
-li:hover {
-    color: red
-}
-
-
 
 /* ===================헤더========================= */
-.books-search-box {
+.loan-search-box {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -83,7 +55,7 @@ li:hover {
 
 }
 
-.books-search {
+.loan-search {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,12 +71,12 @@ li:hover {
 }
 
 
-.books-search-text {
+.loan-search-text {
     flex-grow: 1;
     text-align: center;
 }
 
-.books-search-button {
+.loan-search-button {
     width: 50px;
     height: 20px;
     flex-shrink: 0;
@@ -113,7 +85,7 @@ li:hover {
 
 /* ===================도서 목록========================= */
 /* 테이블 스타일 */
-#books-contents {
+#loan-contents {
     overflow: auto;
 }
 
@@ -145,7 +117,7 @@ th {
         padding: 6px;
     }
 
-    #books-side {
+    #loan-side {
         display: none;
     }
 }
