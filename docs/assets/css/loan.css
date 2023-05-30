@@ -94,6 +94,7 @@ table {
     width: 100%;
     text-align: center;
     border: 2px solid #ddd;
+    overflow-y: scroll;
 }
 
 td {
