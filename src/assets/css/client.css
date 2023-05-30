@@ -113,7 +113,8 @@ td {
 }
 
 th {
-    background-color: #62bfb1;
+    background-color: rgb(0, 133, 126);
+        color: white;
     font-weight: bold;
 }
 

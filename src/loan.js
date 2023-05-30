@@ -1,63 +1,69 @@
-import { loanData } from './loanData.js';
-
 function createTable() {
     const tableBody = document.querySelector('#loan-table tbody');
     let selectedRow = null; // 선택된 행을 저장할 변수
-    loanData.forEach((data, index) => {
-        const row = document.createElement('tr');
-        row.addEventListener('click', () => {
-            // 클릭 시 선택된 행과 다른 행의 처리
-            if (selectedRow === row) {
-                // 이미 선택된 행을 다시 클릭한 경우, 배경색 초기화 및 대출 정보 숨기기
-                row.style.backgroundColor = 'initial';
-                selectedRow = null;
-                hideLoanInfo();
-            } else {
-                // 다른 행을 클릭한 경우, 선택된 행 변경 및 배경색 설정, 대출 정보 업데이트
-                if (selectedRow) {
-                    selectedRow.style.backgroundColor = 'initial';
-                }
-                row.style.backgroundColor = 'lightblue';
-                selectedRow = row;
-                displayLoanInfo(data); // 클릭된 행의 정보 표시
-            }
+
+    fetch('./loanData.json')
+        .then(response => response.json())
+        .then(loanData => {
+            loanData.forEach((data, index) => {
+                const row = document.createElement('tr');
+                row.addEventListener('click', () => {
+                    // 클릭 시 선택된 행과 다른 행의 처리
+                    if (selectedRow === row) {
+                        // 이미 선택된 행을 다시 클릭한 경우, 배경색 초기화 및 대출 정보 숨기기
+                        row.style.backgroundColor = 'initial';
+                        selectedRow = null;
+                        hideLoanInfo();
+                    } else {
+                        // 다른 행을 클릭한 경우, 선택된 행 변경 및 배경색 설정, 대출 정보 업데이트
+                        if (selectedRow) {
+                            selectedRow.style.backgroundColor = 'initial';
+                        }
+                        row.style.backgroundColor = 'lightblue';
+                        selectedRow = row;
+                        displayLoanInfo(data); // 클릭된 행의 정보 표시
+                    }
+                });
+                row.style.cursor = 'pointer'; // 커서를 손가락 모양으로 변경
+
+                const loanNumberCell = document.createElement('td');
+                loanNumberCell.textContent = index + 1;
+                row.appendChild(loanNumberCell);
+
+                const registrationNumberCell = document.createElement('td');
+                registrationNumberCell.textContent = data.등록번호;
+                row.appendChild(registrationNumberCell);
+
+                const titleCell = document.createElement('td');
+                titleCell.textContent = data.도서명;
+                row.appendChild(titleCell);
+
+                const volumeCell = document.createElement('td');
+                volumeCell.textContent = data.도서권수;
+                row.appendChild(volumeCell);
+
+                const loanDateCell = document.createElement('td');
+                loanDateCell.textContent = data.대출일;
+                row.appendChild(loanDateCell);
+
+                const returnDateCell = document.createElement('td');
+                returnDateCell.textContent = data.반납예정일;
+                row.appendChild(returnDateCell);
+
+                const reservationCountCell = document.createElement('td');
+                reservationCountCell.textContent = data.예약건수;
+                row.appendChild(reservationCountCell);
+
+                const extensionCountCell = document.createElement('td');
+                extensionCountCell.textContent = data.연장횟수;
+                row.appendChild(extensionCountCell);
+
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching loan data:', error);
         });
-        row.style.cursor = 'pointer'; // 커서를 손가락 모양으로 변경
-
-        const loanNumberCell = document.createElement('td');
-        loanNumberCell.textContent = index + 1;
-        row.appendChild(loanNumberCell);
-
-        const registrationNumberCell = document.createElement('td');
-        registrationNumberCell.textContent = data.등록번호;
-        row.appendChild(registrationNumberCell);
-
-        const titleCell = document.createElement('td');
-        titleCell.textContent = data.도서명;
-        row.appendChild(titleCell);
-
-        const volumeCell = document.createElement('td');
-        volumeCell.textContent = data.도서권수;
-        row.appendChild(volumeCell);
-
-        const loanDateCell = document.createElement('td');
-        loanDateCell.textContent = data.대출일;
-        row.appendChild(loanDateCell);
-
-        const returnDateCell = document.createElement('td');
-        returnDateCell.textContent = data.반납예정일;
-        row.appendChild(returnDateCell);
-
-        const reservationCountCell = document.createElement('td');
-        reservationCountCell.textContent = data.예약건수;
-        row.appendChild(reservationCountCell);
-
-        const extensionCountCell = document.createElement('td');
-        extensionCountCell.textContent = data.연장횟수;
-        row.appendChild(extensionCountCell);
-
-        tableBody.appendChild(row);
-    });
 }
 
 function displayLoanInfo(loan) {

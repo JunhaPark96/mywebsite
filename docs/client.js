@@ -1,118 +1,134 @@
-import usersData from './usersData.js';
+fetch('./usersData.json') // usersData.json 파일을 가져옴
+    .then(response => response.json()) // JSON 형식으로 변환
+    .then(usersData => {
+        // 테이블 생성 함수
+        function createTable() {
+        const tableBody = document.getElementById("client-table-body"); // tbody 요소 선택
 
-// 테이블 생성 함수
-function createTable() {
-    const table = document.getElementById("client-table");
+        // 기존의 tbody 내용 제거
+        while (tableBody.firstChild) {
+            tableBody.firstChild.remove();
+        }
 
-    usersData.forEach((user) => {
-        const row = table.insertRow();
+        usersData.forEach((user) => {
+          const row = document.createElement("tr");
 
-        // 체크박스 셀
-        const checkboxCell = row.insertCell();
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkboxCell.appendChild(checkbox);
+          // 체크박스 셀
+          const checkboxCell = document.createElement("td");
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkboxCell.appendChild(checkbox);
+          row.appendChild(checkboxCell);
 
-        // number 셀
-        const numberCell = row.insertCell();
-        numberCell.textContent = user.number;
+          // 번호 셀
+          const numberCell = document.createElement("td");
+          numberCell.textContent = user.number;
+          row.appendChild(numberCell);
 
-        // name 셀
-        const nameCell = row.insertCell();
-        nameCell.textContent = user.name;
+          // 이름 셀
+          const nameCell = document.createElement("td");
+          nameCell.textContent = user.name;
+          row.appendChild(nameCell);
 
-        // birthDate 셀
-        const birthDateCell = row.insertCell();
-        birthDateCell.textContent = user.birthDate;
+          // 생년월일 셀
+          const birthDateCell = document.createElement("td");
+          birthDateCell.textContent = user.birthDate;
+          row.appendChild(birthDateCell);
 
-        // address 셀
-        const addressCell = row.insertCell();
-        addressCell.textContent = user.address;
+          // 주소 셀
+          const addressCell = document.createElement("td");
+          addressCell.textContent = user.address;
+          row.appendChild(addressCell);
 
-        // phoneNumber 셀
-        const phoneNumberCell = row.insertCell();
-        phoneNumberCell.textContent = user.phoneNumber;
+          // 전화번호 셀
+          const phoneNumberCell = document.createElement("td");
+          phoneNumberCell.textContent = user.phoneNumber;
+          row.appendChild(phoneNumberCell);
 
-        // registrationDate 셀
-        const registrationDateCell = row.insertCell();
-        registrationDateCell.textContent = user.registrationDate;
+          // 등록일 셀
+          const registrationDateCell = document.createElement("td");
+          registrationDateCell.textContent = user.registrationDate;
+          row.appendChild(registrationDateCell);
 
-        // userID 셀
-        const userIDCell = row.insertCell();
-        userIDCell.textContent = user.userID;
-    });
-}
+          // 사용자 ID 셀
+          const userIDCell = document.createElement("td");
+          userIDCell.textContent = user.userID;
+          row.appendChild(userIDCell);
 
-// 총 인원 수 표시 함수
-function displayTotalUsers() {
-    const totalUsers = usersData.length;
-    const totalUsersElement = document.getElementById("total-users");
-    totalUsersElement.textContent = `${totalUsers}`;
-}
+          tableBody.appendChild(row); // tbody에 행 추가
+      });
+    }
 
-// 유저 생성 함수
-function createUser() {
-    const newUser = {
+      // 전체 사용자 수 표시 함수
+      function displayTotalUsers() {
+          const totalUsers = usersData.length;
+          const totalUsersElement = document.getElementById("total-users");
+          totalUsersElement.textContent = `${totalUsers}`;
+      }
+
+      // 사용자 생성 함수
+      function createUser() {
+          const newUser = {
         number: usersData.length + 1,
-        name: "새로운 유저",
+          name: "새 사용자",
         birthDate: "YYYY-MM-DD",
         address: "주소",
         phoneNumber: "전화번호",
         registrationDate: "YYYY-MM-DD",
-        userID: "새로운 ID",
-    };
+          userID: "새 ID",
+      };
 
-    usersData.push(newUser);
-    createTable();
-    displayTotalUsers();
-}
+        usersData.push(newUser);
+        createTable();
+        displayTotalUsers();
+    }
 
-// 유저 삭제 함수
-function deleteUser() {
-    const table = document.getElementById("client-table");
-    const checkboxes = table.getElementsByTagName("input");
+      // 사용자 삭제 함수
+      function deleteUser() {
+          const table = document.getElementById("client-table");
+          const checkboxes = table.getElementsByTagName("input");
 
-    for (let i = checkboxes.length - 1; i >= 0; i--) {
-        if (checkboxes[i].type === "checkbox" && checkboxes[i].checked) {
-            table.deleteRow(i + 1); // +1 to account for table header
-            usersData.splice(i, 1);
+        for (let i = checkboxes.length - 1; i >= 0; i--) {
+            if (checkboxes[i].type === "checkbox" && checkboxes[i].checked) {
+              table.deleteRow(i + 1); // 테이블 헤더를 고려하여 +1
+              usersData.splice(i, 1);
+          }
+      }
+
+        displayTotalUsers();
+    }
+
+      // 사용자 업데이트 함수
+      function updateUser() {
+          const table = document.getElementById("client-table");
+          const checkboxes = table.getElementsByTagName("input");
+
+        for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].type === "checkbox" && checkboxes[i].checked) {
+                const row = checkboxes[i].parentNode.parentNode;
+                const cells = row.cells;
+
+                cells[2].textContent = "수정된 이름";
+                cells[3].textContent = "YYYY-MM-DD"; // 수정된 생년월일
+                cells[4].textContent = "수정된 주소";
+                cells[5].textContent = "수정된 전화번호";
+                cells[6].textContent = "YYYY-MM-DD"; // 수정된 등록일
+                cells[7].textContent = "수정된 ID";
+
+                checkboxes[i].checked = false;
+            }
         }
     }
 
-    displayTotalUsers();
-}
+      // 사용자 생성, 삭제, 업데이트 버튼에 이벤트 리스너 등록
+      document.getElementById("create-user-btn").addEventListener("click", createUser);
+      document.getElementById("delete-user-btn").addEventListener("click", deleteUser);
+      document.getElementById("update-user-btn").addEventListener("click", updateUser);
 
-// 유저 내용 변경 함수
-function updateUser() {
-    const table = document.getElementById("client-table");
-    const checkboxes = table.getElementsByTagName("input");
-
-    for (let i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].type === "checkbox" && checkboxes[i].checked) {
-            const row = checkboxes[i].parentNode.parentNode;
-            const cells = row.cells;
-
-            cells[2].textContent = "변경된 이름";
-            cells[3].textContent = "YYYY-MM-DD"; // 변경된 생년월일
-            cells[4].textContent = "변경된 주소";
-            cells[5].textContent = "변경된 전화번호";
-            cells[6].textContent = "YYYY-MM-DD"; // 변경된 가입날짜
-            cells[7].textContent = "변경된 ID";
-        }
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
+    // 테이블과 전체 사용자 수 초기화
     createTable();
     displayTotalUsers();
-
-    const createUserButton = document.getElementById("create-user");
-    createUserButton.addEventListener("click", createUser);
-
-    const deleteUserButton = document.getElementById("delete-user");
-    deleteUserButton.addEventListener("click", deleteUser);
-
-    const updateUserButton = document.getElementById("update-user");
-    updateUserButton.addEventListener("click", updateUser);
-});
-
+  })
+    .catch(error => {
+        console.error('Error:', error);
+    });

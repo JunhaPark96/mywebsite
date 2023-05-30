@@ -12,7 +12,7 @@ function timeline_list() {
 function createBooksTable() {
   // total records 출력
   const totalRecords = document.createElement("div");
-  totalRecords.textContent = "total records: " + booksData.length;
+  totalRecords.textContent = "total records: ";
   document.getElementById("books-contents").appendChild(totalRecords);
 
   const table = document.createElement("table");
@@ -40,35 +40,47 @@ function createBooksTable() {
   // 테이블 바디 생성
   const tbody = document.createElement("tbody");
 
-  // 도서 데이터를 순회하며 각 행 생성
-  booksData.forEach((book, index) => {
-    const row = document.createElement("tr");
+  // JSON 데이터 가져오기
+  fetch('booksData.json')
+    .then(response => response.json())
+    .then(data => {
+      // total records 업데이트
+      totalRecords.textContent += data.length;
 
-    // 각 행에 border-bottom 스타일 추가
-    row.style.borderBottom = "1px solid #ddd";
+      // 도서 데이터를 순회하며 각 행 생성
+      data.forEach((book, index) => {
+        const row = document.createElement("tr");
 
-    // 체크박스 열 추가
-    const checkboxCell = document.createElement("td");
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkboxCell.appendChild(checkbox);
-    row.appendChild(checkboxCell);
+        // 각 행에 border-bottom 스타일 추가
+        row.style.borderBottom = "1px solid #ddd";
 
-    // 번호 컬럼 추가
-    const indexCell = document.createElement("td");
-    indexCell.textContent = index + 1;
-    row.appendChild(indexCell);
+        // 체크박스 열 추가
+        const checkboxCell = document.createElement("td");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkboxCell.appendChild(checkbox);
+        row.appendChild(checkboxCell);
 
-    // 나머지 컬럼
-    columns.slice(2).forEach(column => {
-      const cell = document.createElement("td");
-      cell.textContent = book[column];
-      row.appendChild(cell);
+        // 번호 컬럼 추가
+        const indexCell = document.createElement("td");
+        indexCell.textContent = index + 1;
+        row.appendChild(indexCell);
+
+        // 나머지 컬럼
+        columns.slice(2).forEach(column => {
+          const cell = document.createElement("td");
+          cell.textContent = book[column];
+          row.appendChild(cell);
+        });
+
+        tbody.appendChild(row);
+      });
+
+      // 테이블 완성
+      table.appendChild(tbody);
+      document.getElementById("books-contents").appendChild(table);
+    })
+    .catch(error => {
+      console.error('Error:', error);
     });
-
-    tbody.appendChild(row);
-  });
-
-  table.appendChild(tbody);
-  document.getElementById("books-contents").appendChild(table);
 }

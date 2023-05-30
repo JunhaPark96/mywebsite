@@ -16,13 +16,12 @@
   header {
     display: flex;
     justify-content: flex-end;
-    background-color: #62bfb1;
+    background-color: rgb(0, 133, 126);
     padding-right: 20px;
     border-radius: 0 0 10px 10px;
   }
 
-  .login-menu {
-    font-family: "NanumSquare", sans-serif;
+                .login-menu {
     font-size: 2vw;
   }
 
@@ -67,25 +66,21 @@
   .menu1 {
     height: 100%;
     text-align: center;
-    font-family: "NanumSquare", sans-serif;
     font-size: 2vw;
   }
 
   .menu2 {
     height: 100%;
-    font-family: "NanumSquare", sans-serif;
     font-size: 2vw;
   }
 
   .menu3 {
     height: 100%;
-    font-family: "NanumSquare", sans-serif;
     font-size: 2vw;
   }
 
   .menu4 {
     height: 100%;
-    font-family: "NanumSquare", sans-serif;
     font-size: 2vw;
   }
 
@@ -117,3 +112,40 @@
       display: none;
     }
   }
+
+/* 글꼴 */
+@font-face {
+  font-family: 'Hana-light';
+  font-weight: 300;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaLight.eot');
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaLight.eot?#iefix') format('embedded-opentype'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaLight.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaLight.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaLight.ttf') format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hana-medium';
+  font-weight: 500;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaMedium.eot');
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaMedium.eot?#iefix') format('embedded-opentype'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaMedium.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaMedium.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaMedium.ttf') format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hana-bold';
+  font-weight: 700;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaBold.eot');
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaBold.eot?#iefix') format('embedded-opentype'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaBold.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaBold.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaBold.ttf') format("truetype");
+  font-display: swap;
+}
