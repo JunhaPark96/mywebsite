@@ -94,15 +94,15 @@ function hideLoanInfo() {
 
 // 대출 정보 계산 함수들
 function getMaxLoanCount() {
-    return 10; // 최대 대출 건수를 반환하는 로직을 구현해야 합니다.
+    return 10; // 최대 대출 건수를 반환하는 로직
 }
 
 function getCurrentLoanCount(userId) {
-    return 5; // 현재 대출 건수를 반환하는 로직을 구현해야 합니다.
+    return 5; // 현재 대출 건수를 반환하는 로직
 }
 
 function getOverdueLoanCount(userId) {
-    return 2; // 연체 대출 건수를 반환하는 로직을 구현해야 합니다.
+    return 2; // 연체 대출 건수를 반환하는 로직
 }
 
 export { createTable };

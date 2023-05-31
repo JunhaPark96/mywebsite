@@ -66,6 +66,19 @@ fetch('./usersData.json') // usersData.json 파일을 가져옴
       totalUsersElement.textContent = `${totalUsers}`;
     }
 
+    // thead에 있는 checkbox 요소 선택
+    const table = document.getElementById("client-table");
+    const theadCheckbox = table.querySelector("thead input[type='checkbox']");
+
+    // thead checkbox 클릭 이벤트 리스너 등록
+    theadCheckbox.addEventListener("click", function () {
+      const checkboxes = table.querySelectorAll("tbody input[type='checkbox']");
+
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = theadCheckbox.checked;
+      });
+    });
+
     // 사용자 생성 함수
     function createUser() {
       const newUser = {
@@ -86,17 +99,18 @@ fetch('./usersData.json') // usersData.json 파일을 가져옴
     // 사용자 삭제 함수
     function deleteUser() {
       const table = document.getElementById("client-table");
-      const checkboxes = table.getElementsByTagName("input");
+      const checkboxes = table.querySelectorAll("tbody input[type='checkbox']:checked");
 
-      for (let i = checkboxes.length - 1; i >= 0; i--) {
-        if (checkboxes[i].type === "checkbox" && checkboxes[i].checked) {
-          table.deleteRow(i + 1); // 테이블 헤더를 고려하여 +1
-          usersData.splice(i, 1);
-        }
-      }
+      checkboxes.forEach(checkbox => {
+        const row = checkbox.parentNode.parentNode;
+        table.deleteRow(row.rowIndex);
+        const index = Array.from(table.getElementsByTagName("tr")).indexOf(row) - 1;
+        usersData.splice(index, 1);
+      });
 
       displayTotalUsers();
     }
+
 
     // 사용자 업데이트 함수
     function updateUser() {
