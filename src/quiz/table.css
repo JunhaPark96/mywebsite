@@ -1,0 +1,38 @@
+th {
+    background-color: black;
+    color: white;
+}
+
+table {}
+
+td {
+    border: 0.5px solid white;
+}
+
+tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+tr:nth-child(odd) {
+    background-color: white;
+}
+
+tr.selected {
+    background-color: wheat;
+}
+
+.odd {
+    background-color: lightgray;
+}
+
+.even {
+    background-color: white;
+}
+
+.selected {
+    background-color: yellow;
+}
+
+.all-selected thead input[type="checkbox"] {
+    background-color: yellow;
+}
